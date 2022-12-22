@@ -1309,7 +1309,6 @@ async function main() {
     const firewall = await digitalocean_1.getFirewall(client, config.firewallName);
     digitalocean_1.printFirewallRules(firewall.inbound_rules, "(original)");
     const newRules = digitalocean_1.generateInboundRules(firewall.inbound_rules, config);
-    console.log("Updating firewall %j", newRules);
     await digitalocean_1.updateInboundRules(client, firewall, newRules, config.dryrun);
 }
 main();
@@ -6029,7 +6028,8 @@ async function updateInboundRules({ firewall: firewallClient }, firewall, inboun
         }
     }
     catch (e) {
-        console.error("FW Update failed: %j", updated);
+        console.error("FW Update failed. updated : %j", updated);
+        console.error("FW Update failed. inboundRules: %j", inboundRules);
         console.error(e);
     }
 }

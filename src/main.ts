@@ -26,8 +26,6 @@ async function main() {
 
   const newRules = generateInboundRules(firewall.inbound_rules, config);
 
-  console.log("Updating firewall %j", newRules);
-
   await updateInboundRules(client, firewall, newRules, config.dryrun);
 }
 
